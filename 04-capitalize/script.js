@@ -7,9 +7,16 @@
 */
 
 function capitalize(str) {
-    // Напишите код здесь
+  const separators = [' ', '\\.', ',', ';', ':', '-', '\\!', '\\?'];
+  const words = str.split(new RegExp(separators.join('|'), 'g'));
+  const res = words.filter(item => item).map(item => item[0].toUpperCase() + item.slice(1)).join(' ');
+  return res;
 }
 
 // Протестируйте решение, вызывая функцию с разными аргументами:
 
 console.log(capitalize('молодость всё простит')); // "Молодость Всё Простит"
+console.log(capitalize(' '));
+console.log(capitalize('слово '));
+console.log(capitalize(''));
+console.log(capitalize('молодость  всё     простит'));

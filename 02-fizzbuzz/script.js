@@ -9,11 +9,17 @@
  * • кратные и трём, и пяти одновременно — на fizzbuzz.
  * 
 */
-
 function fizzBuzz(num) {
-    // Напишите код здесь
+  if (typeof (num) !== 'number') return 'error: number expected!';
+  if (num <= 0) return 0;
+  for (let i = 1; i <= num; i++) {
+    if (i % 15 == 0) { console.log('fizzbuzz'); continue; }
+    if (i % 5 == 0) { console.log('buzz'); continue; }
+    if (i % 3 == 0) { console.log('fizz'); continue; }
+    console.log(i);
+  }
 }
 
 // Протестируйте решение, вызывая функцию с разными аргументами:
 
-console.log(fizzBuzz(15));
+fizzBuzz(15);

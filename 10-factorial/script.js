@@ -8,11 +8,18 @@
 */
 
 function factorial(n) {
-    // Напишите код здесь
+  if (typeof (n) !== 'number') return 'error: number expected!';
+  if (n <= 1) return 1;
+  let res = 1
+  while (n) {
+    res *= n;
+    n--;
+  }
+  return res;
 }
 
 // Протестируйте решение, вызывая функцию с разными аргументами:
-
+console.log(factorial(''));
 console.log(factorial(0)); // 1
 console.log(factorial(1)); // 1
 console.log(factorial(6)); // 720

@@ -8,7 +8,10 @@
 */
 
 function intersection(arr1, arr2) {
-    // Напишите код здесь
+  const set1 = new Set(arr1);
+  const set2 = new Set(arr2);
+  const res = [...set1].filter(item => set2.has(item));
+  return res;
 }
 
 // Протестируйте решение, вызывая функцию с разными аргументами:
