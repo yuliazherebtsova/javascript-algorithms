@@ -4,22 +4,34 @@
  * Напишите функцию countZeros(n), принимающую на вход целое неотрицательное
  * число n. Возвращать функция должна количество нулей, содержащихся в аргументе.
  * 
+ * 
+ * 10, 20, 30, 40, 50, 60, 70, 80, 90.........9
+ * 100    2
+ * 101 102 103 104 105 106 107 108 109        9
+ * 110 120 130 140 150 160 170 180 190 .......9
+ * 200    2
+ * 201 201 203................................9
+ * 210 220                                    9
+ * 300    2
+ * 301 302 303................................9
+ * 310 320 330 340                            4
+ * 64
+ * 
 */
 
 function countZeros(n) {
   if (typeof n !== 'number')
     return console.error("error: non-negative number expected!");
   if (n <= 0) return 0;
-  let res = 0;
-  while (n % 10 == 0) {
-    n /= 10;
-    res++;
+  let count = 0;
+  for (let i = 1; i <= n; i++) {
+    count += (i.toString(10).match(/0/g) || []).length;
   }
-  return res;
+  return count;
 }
 
 // Протестируйте решение, вызывая функцию с разными аргументами:
-// console.log(countZeros('42')); /// error: non-negative number expected!
+//console.log(countZeros('42')); /// error: non-negative number expected!
 console.log(countZeros(20)); // 2 – два нуля, по одному в числах 10 и 20
 console.log(countZeros(100)); // 11 – 11 нулей в числах: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 
 console.log(countZeros(342)); // 13
