@@ -11,8 +11,7 @@ function capitalize(str) {
     return console.error("error: string expected!");
   const separators = [' ', '\\.', ',', ';', ':', '-', '\\!', '\\?'];
   const words = str.split(new RegExp(separators.join('|'), 'g'));
-  const res = words.filter(item => item).map(item => item[0].toUpperCase() + item.slice(1)).join(' ');
-  return res;
+  return words.filter(item => item).map(item => item[0].toUpperCase() + item.slice(1)).join(' ');
 }
 
 // Протестируйте решение, вызывая функцию с разными аргументами:
