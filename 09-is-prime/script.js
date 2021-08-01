@@ -10,11 +10,18 @@
 */
 
 function isPrime(n) {
-    // Напишите код здесь
+  if (typeof n !== 'number' || !Number.isInteger(n))
+    return console.error("error: integer expected!");
+  if (n <= 1) return false;
+  for (let i = 2; i < n; i++) {
+    if (n % i === 0) return false;
+  }
+  return true;
 }
 
 // Протестируйте решение, вызывая функцию с разными аргументами:
-
+//console.log(isPrime('42')); /// error: integer expected!
+//console.log(isPrime(3.333)); /// error: integer expected!
 console.log(isPrime(0)); // false
 console.log(isPrime(1)); // false
 console.log(isPrime(3)); // true
