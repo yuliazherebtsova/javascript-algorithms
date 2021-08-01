@@ -9,8 +9,10 @@
 */
 
 function fibonacci(n) {
-  if (typeof (n) !== 'number') return 'error: number expected!';
-  if (n <= 1) return 0;
+  if (typeof n !== 'number')
+    return console.error("error: non-negative number expected!");
+  if (n <= 1)
+    return 0;
   let previous = 0;
   let current = 1;
   while (n - 2) {
@@ -23,7 +25,7 @@ function fibonacci(n) {
 }
 
 // Протестируйте решение, вызывая функцию с разными аргументами:
-console.log(fibonacci(''));
+// console.log(fibonacci('42')); /// error: non-negative number expected!
 console.log(fibonacci(4)); // 2. Четвёртое число последовательности — двойка (0, 1, 1, 2)
 console.log(fibonacci(6)); // 5
 console.log(fibonacci(10)); // 34

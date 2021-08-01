@@ -8,12 +8,18 @@
 */
 
 function uniq(arr) {
-  const set = new Set(arr);
-  return Array.from(set);
+  if (!Array.isArray(arr))
+    return console.error('error: array expected!');
+  else
+    if (arr.length !== 0 && typeof arr[0] !== 'number')
+      return console.error('error: array of numbers expected!');
+    else
+      return Array.from(new Set(arr));
 }
 
 // Протестируйте решение, вызывая функцию с разными аргументами:
-
+console.log(uniq('test')); // error: array expected!
+console.log(uniq(['a', 'b', 'c'])); // error: array of numbers expected!
 console.log(uniq([1, 2, 5, 4, 2])); // [1, 2, 5, 4]
 console.log(uniq([3, 3, 3, 5])); // [3, 5]
 console.log(uniq([1, 4, 2, 2, 3, 4, 8])); // [1, 4, 2, 3, 8]

@@ -7,7 +7,8 @@
 */
 
 function countZeros(n) {
-  if (typeof (n) !== 'number') return 'error: number expected!';
+  if (typeof n !== 'number')
+    return console.error("error: non-negative number expected!");
   if (n <= 0) return 0;
   let res = 0;
   while (n % 10 == 0) {
@@ -18,7 +19,7 @@ function countZeros(n) {
 }
 
 // Протестируйте решение, вызывая функцию с разными аргументами:
-console.log(countZeros(''));
+// console.log(countZeros('42')); /// error: non-negative number expected!
 console.log(countZeros(20)); // 2 – два нуля, по одному в числах 10 и 20
 console.log(countZeros(100)); // 11 – 11 нулей в числах: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 
 console.log(countZeros(342)); // 13

@@ -12,17 +12,17 @@
  * и пробелов в аргументе быть не может.
  * 
 */
- 
+
 function palindrome(str) {
-  if (!(typeof str === 'string'))
-      return "error: string expected!";
+  if (typeof str !== 'string')
+    return console.error("error: string expected!");
   const separators = [' ', ',', ';', ':', '-', '!', '\\?'];
   const letters = str.toLowerCase().split('').filter(item => !separators.includes(item));
   return letters.reduce((res, curr, i, arr) => res && arr[i] === arr[arr.length - 1 - i], true);
 }
 
 // Протестируйте решение, вызывая функцию с разными аргументами:
-console.log(palindrome(42));
+// console.log(palindrome(42)); // error: string expected!
 console.log(palindrome('топот')); // должно быть true
 console.log(palindrome('Saippuakivikauppias')); // true
 console.log(palindrome('привет')); // false

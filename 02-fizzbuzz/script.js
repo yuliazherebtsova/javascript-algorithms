@@ -10,7 +10,8 @@
  * 
 */
 function fizzBuzz(num) {
-  if (typeof (num) !== 'number') return 'error: number expected!';
+  if (typeof num !== 'number')
+    return console.error("error: non-negative number expected!");
   if (num <= 0) return 0;
   for (let i = 1; i <= num; i++) {
     if (i % 15 == 0) { console.log('fizzbuzz'); continue; }
@@ -21,5 +22,5 @@ function fizzBuzz(num) {
 }
 
 // Протестируйте решение, вызывая функцию с разными аргументами:
-
+// fizzBuzz(''); /// error: non-negative number expected!
 fizzBuzz(15);
