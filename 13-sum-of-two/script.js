@@ -9,7 +9,7 @@
 */
 
 function binarySearch(arr, elem) {
-  // O(n * log n)
+  // O(log n)
   let start = 0;
   let end = arr.length - 1;
   while (start <= end) {
@@ -30,7 +30,7 @@ function sumOfTwo(arr, sum) {
   if (!Array.isArray(arr) || typeof sum !== 'number')
     return console.error("error: array and number expected!");
   const sortedArr = arr.sort((a, b) => { return a - b; }); // O(n * log n)
-  const res = sortedArr.filter((num, i, arr) => { return binarySearch(arr, sum - num); }); // O(n * log n)
+  const res = sortedArr.filter((num, i, arr) => { return binarySearch(arr, sum - num); }); // O(log n)
   return res.length > 0 ? true : false;
 }
 
