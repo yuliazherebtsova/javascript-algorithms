@@ -35,8 +35,8 @@ function sumOfTwo(arr, sum) {
 }
 
 // Протестируйте решение, вызывая функцию с разными аргументами:
-//console.log(sumOfTwo([1, 2, 3, 4, 5], '42'));
-//console.log(sumOfTwo('42', 100));
+//console.log(sumOfTwo([1, 2, 3, 4, 5], '42'));  // error: array and number expected!
+//console.log(sumOfTwo('42', 100)); // error: array and number expected!
 console.log(sumOfTwo([100, 55, 45, 33, 12, 0, 1, 2, 3, 4, 5], 4)); // true
 console.log(sumOfTwo([1, 2, 3, 4, 5], 4)); // true (так как 1 + 3 === 4)
 console.log(sumOfTwo([1, 2, 3, 4, 5], 100)); // false
