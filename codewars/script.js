@@ -34,6 +34,17 @@ function findUniq(arr) {
   return arr.filter((item, index, arr) => (arr.toString().match(new RegExp(item.toString(), 'g')) || []).length === 1)[0];
 }
 
-console.log(findUniq([0, 1, 0]), 1);
-console.log(findUniq([1, 1, 1, 2, 1, 1]), 2);
-console.log(findUniq([3, 10, 3, 3, 3]), 10);
+// console.log(findUniq([0, 1, 0]), 1);
+// console.log(findUniq([1, 1, 1, 2, 1, 1]), 2);
+// console.log(findUniq([3, 10, 3, 3, 3]), 10);
+
+function solution(number) {
+  let res = 0;
+  if (number < 0) return 0;
+  for (let i = 1; i < number; i++) {
+    if (i % 15 == 0) { res += i; continue; }
+    if (i % 5 == 0) { res += i; continue; }
+    if (i % 3 == 0) { res += i; continue; }
+  }
+  return res;
+}
