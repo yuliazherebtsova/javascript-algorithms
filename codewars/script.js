@@ -1,22 +1,39 @@
 /*
-* Задача *
+* Задачи*
+*
 *
 */
 
-function generateHashtag(str) {
-  const separators = [' ', '\\.', ',', ';', ':', '-', '\\!', '\\?'];
-  const words = str.split(new RegExp(separators.join('|'), 'g'));
-  const text = words.filter(item => item).map(item => item[0].toUpperCase() + item.slice(1)).join('')
-  return text.length + 1 > 140 || !text ? false : '#' + text;
+function duplicateCount(text) {
+  const lowerText = text.toLowerCase();
+  const letters = lowerText.split('');
+  const duplicates = letters.filter(item => (lowerText.match(new RegExp(item, 'g')) || []).length > 1);
+  return new Set(duplicates).size;
 }
 
-console.log(generateHashtag(""), false, "Expected an empty string to return false");
-console.log(generateHashtag(" ".repeat(200)), false, "Still an empty string");
-console.log(generateHashtag("Do We have A Hashtag"), "#DoWeHaveAHashtag", "Expected a Hashtag (#) at the beginning.");
-console.log(generateHashtag("Codewars"), "#Codewars", "Should handle a single word.");
-console.log(generateHashtag("Codewars Is Nice"), "#CodewarsIsNice", "Should remove spaces.");
-console.log(generateHashtag("Codewars is nice"), "#CodewarsIsNice", "Should capitalize first letters of words.");
-console.log(generateHashtag("code" + " ".repeat(140) + "wars"), "#CodeWars");
-console.log(generateHashtag("Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong Cat"), false, "Should return false if the final word is longer than 140 chars.");
-console.log(generateHashtag("a".repeat(139)), "#A" + "a".repeat(138), "Should work");
-console.log(generateHashtag("a".repeat(140)), false, "Too long");
+// console.log(duplicateCount(""), 0);
+// console.log(duplicateCount("abcde"), 0);
+// console.log(duplicateCount("aabbcde"), 2);
+// console.log(duplicateCount("aabBcde"), 2, "should ignore case");
+// console.log(duplicateCount("Indivisibility"), 1);
+// console.log(duplicateCount("Indivisibilities"), 2, "characters may not be adjacent");
+
+String.prototype.isUpperCase = function () {
+  return String(this) === this.toUpperCase();
+}
+
+// console.log(''.isUpperCase() !== undefined, 'Must define the prototype isUpperCase');
+// console.log('c'.isUpperCase(), false, 'c is not upper case');
+// console.log('C'.isUpperCase(), true, 'C is upper case');
+// console.log('hello I AM DONALD'.isUpperCase(), false, 'hello I AM DONALD not is upper case');
+// console.log('HELLO I AM DONALD'.isUpperCase(), true, 'HELLO I AM DONALD is upper case');
+// console.log('ACSKLDFJSgSKLDFJSKLDFJ'.isUpperCase(), false, 'ACSKLDFJSgSKLDFJSKLDFJ not is upper case');
+// console.log('ACSKLDFJSGSKLDFJSKLDFJ'.isUpperCase(), true, 'ACSKLDFJSGSKLDFJSKLDFJ is upper case');
+
+function findUniq(arr) {
+  return arr.filter((item, index, arr) => (arr.toString().match(new RegExp(item.toString(), 'g')) || []).length === 1)[0];
+}
+
+console.log(findUniq([0, 1, 0]), 1);
+console.log(findUniq([1, 1, 1, 2, 1, 1]), 2);
+console.log(findUniq([3, 10, 3, 3, 3]), 10);
