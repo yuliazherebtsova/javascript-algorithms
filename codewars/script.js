@@ -30,8 +30,9 @@ String.prototype.isUpperCase = function () {
 // console.log('ACSKLDFJSgSKLDFJSKLDFJ'.isUpperCase(), false, 'ACSKLDFJSgSKLDFJSKLDFJ not is upper case');
 // console.log('ACSKLDFJSGSKLDFJSKLDFJ'.isUpperCase(), true, 'ACSKLDFJSGSKLDFJSKLDFJ is upper case');
 
-function findUniq(arr) {
-  return arr.filter((item, index, arr) => (arr.toString().match(new RegExp(item.toString(), 'g')) || []).length === 1)[0];
+function findUniqNum(arr) {
+  const sorted = arr.sort();
+  return sorted[0] === sorted[1] ? sorted[arr.length - 1] : sorted[0];
 }
 
 // console.log(findUniq([0, 1, 0]), 1);
@@ -48,3 +49,21 @@ function solution(number) {
   }
   return res;
 }
+
+function findUniq(arr) {
+  const sorted = arr.map(item => [...new Set(item.toLowerCase().split('').sort().join('').trim())].join('')).sort();
+  const found = sorted.map((item, index, arr) => arr[0] === arr[1] ? arr[arr.length - 1] : arr[0])[0];
+  const filtered = arr.map(item => {
+    const str = [...new Set(item.toLowerCase().split('').sort().join('').trim())].join('');
+    if (str === found)
+      return item;
+    else return '';
+  }).filter(item => item);
+  return filtered[0];
+}
+
+console.log(findUniq(['Aa', 'aaa', 'aaaaa', 'BbBb', 'Aaaa', 'AaAaAa', 'a']), 'BbBb');
+console.log(findUniq(['abc', 'acb', 'bac', 'foo', 'bca', 'cab', 'cba']), 'foo');
+console.log(findUniq(['silvia', 'vasili', 'victor']), 'victor');
+console.log(findUniq(['Tom Marvolo Riddle', 'I am Lord Voldemort', 'Harry Potter']), 'Harry Potter');
+console.log(findUniq(['    ', 'a', ' ']), 'a');
