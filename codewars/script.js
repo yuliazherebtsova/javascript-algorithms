@@ -62,8 +62,59 @@ function findUniq(arr) {
   return filtered[0];
 }
 
-console.log(findUniq(['Aa', 'aaa', 'aaaaa', 'BbBb', 'Aaaa', 'AaAaAa', 'a']), 'BbBb');
-console.log(findUniq(['abc', 'acb', 'bac', 'foo', 'bca', 'cab', 'cba']), 'foo');
-console.log(findUniq(['silvia', 'vasili', 'victor']), 'victor');
-console.log(findUniq(['Tom Marvolo Riddle', 'I am Lord Voldemort', 'Harry Potter']), 'Harry Potter');
-console.log(findUniq(['    ', 'a', ' ']), 'a');
+// console.log(findUniq(['Aa', 'aaa', 'aaaaa', 'BbBb', 'Aaaa', 'AaAaAa', 'a']), 'BbBb');
+// console.log(findUniq(['abc', 'acb', 'bac', 'foo', 'bca', 'cab', 'cba']), 'foo');
+// console.log(findUniq(['silvia', 'vasili', 'victor']), 'victor');
+// console.log(findUniq(['Tom Marvolo Riddle', 'I am Lord Voldemort', 'Harry Potter']), 'Harry Potter');
+// console.log(findUniq(['    ', 'a', ' ']), 'a');
+
+function sumIntervals(intervals) {
+  const res = new Set();
+  intervals.forEach(arr => {
+    for (let i = arr[0]; i < arr[arr.length - 1]; i++) {
+      res.add(i);
+    }
+  })
+
+  return res.size;
+}
+
+// const test1 = [[1, 5]];
+// const test2 = [[1, 5], [6, 10]];
+// const test3 = [[1, 5], [1, 5]];
+// const test4 = [[1, 4], [7, 10], [3, 5]];
+// console.log(sumIntervals(test1), 4);
+// console.log(sumIntervals(test2), 8);
+// console.log(sumIntervals(test3), 4);
+// console.log(sumIntervals(test4), 7);
+
+// function sumStrings(a, b) {
+//   return (BigInt(a) + BigInt(b)).toString();
+// }
+
+// console.log(sumStrings('123', '456'), '579');
+// console.log(sumStrings('712569312664357328695151392', '8100824045303269669937'));
+// console.log(sumStrings('', '5'));
+
+
+function multiply(a, b) {
+  return (BigInt(a) * BigInt(b)).toString();
+}
+
+
+// console.log(multiply("2", "3"), "6");
+// console.log(multiply("30", "69"), "2070");
+// console.log(multiply("11", "85"), "935");
+// console.log(multiply("2", "0"), "0");
+// console.log(multiply("0", "30"), "0");
+// console.log(multiply("0000001", "3"), "3");
+// console.log(multiply("1009", "03"), "3027");
+// console.log(multiply("98765", "56894"), "5619135910");
+// console.log(multiply("1020303004875647366210", "2774537626200857473632627613"), "2830869077153280552556547081187254342445169156730");
+// console.log(multiply("58608473622772837728372827", "7586374672263726736374"), "444625839871840560024489175424316205566214109298");
+// console.log(multiply("9007199254740991", "9007199254740991"), "81129638414606663681390495662081");
+
+function divideStrings(a,b) {
+  return [Math.floor(BigInt(a) / BigInt(a)).toString(), (BigInt(a) % BigInt(a)).toString()]; 
+}
+
