@@ -162,8 +162,18 @@ function formatDuration(seconds) {
   else return ans[0];
 }
 
-console.log(formatDuration(1), " | 1 second");
-console.log(formatDuration(62), "| 1 minute and 2 seconds");
-console.log(formatDuration(120), "| 2 minutes");
-console.log(formatDuration(3600), "| 1 hour");
-console.log(formatDuration(3662), "| 1 hour, 1 minute and 2 seconds");
+// console.log(formatDuration(1), " | 1 second");
+// console.log(formatDuration(62), "| 1 minute and 2 seconds");
+// console.log(formatDuration(120), "| 2 minutes");
+// console.log(formatDuration(3600), "| 1 hour");
+// console.log(formatDuration(3662), "| 1 hour, 1 minute and 2 seconds");
+
+function solution(input, markers) {
+  const lines = input.split('\n');
+  const words = lines.map(item => item.split(new RegExp(markers.map(item => `\\${item}`).join('|'), 'g')));
+  return words.map(item => item[0].trim()).join('\n');
+};
+
+console.log(solution("apples, plums % and bananas\npears\noranges !applesauce", ["%", "!"], "apples, plums\npears\noranges"));
+console.log(solution("Q @b\nu\ne -e f g", ["@", "-"], "Q\nu\ne"));
+console.log(solution("a\nc\nd $e f g", ["$"], "Q\nu\ne"));
