@@ -174,6 +174,24 @@ function solution(input, markers) {
   return words.map(item => item[0].trim()).join('\n');
 };
 
-console.log(solution("apples, plums % and bananas\npears\noranges !applesauce", ["%", "!"], "apples, plums\npears\noranges"));
-console.log(solution("Q @b\nu\ne -e f g", ["@", "-"], "Q\nu\ne"));
-console.log(solution("a\nc\nd $e f g", ["$"], "Q\nu\ne"));
+// console.log(solution("apples, plums % and bananas\npears\noranges !applesauce", ["%", "!"], "apples, plums\npears\noranges"));
+// console.log(solution("Q @b\nu\ne -e f g", ["@", "-"], "Q\nu\ne"));
+// console.log(solution("a\nc\nd $e f g", ["$"], "Q\nu\ne"));
+
+function formatWords(words) {
+  if (!words || words.length === 1 && words[0] === '' || words.length === 0)
+    return '';
+  const res = words.filter(item => item);
+  if (res.length > 1)
+    return `${res.slice(0, res.length - 1).join(', ')} and ${res[res.length - 1]}`;
+  else
+    return res[0];
+}
+
+
+console.log(formatWords(['one']));
+console.log(formatWords(['one', '', 'three']));
+console.log(formatWords(['', '', 'three']));
+console.log(formatWords(['one', 'two', '']));
+console.log(formatWords(['']));
+console.log(formatWords([]));
