@@ -189,9 +189,51 @@ function formatWords(words) {
 }
 
 
-console.log(formatWords(['one']));
-console.log(formatWords(['one', '', 'three']));
-console.log(formatWords(['', '', 'three']));
-console.log(formatWords(['one', 'two', '']));
-console.log(formatWords(['']));
-console.log(formatWords([]));
+// console.log(formatWords(['one']));
+// console.log(formatWords(['one', '', 'three']));
+// console.log(formatWords(['', '', 'three']));
+// console.log(formatWords(['one', 'two', '']));
+// console.log(formatWords(['']));
+// console.log(formatWords([]));
+
+function nextPermutation(array) {
+  https://www.nayuki.io/page/next-lexicographical-permutation-algorithm
+  // Find non-increasing suffix
+  let i = array.length - 1;
+  while (i > 0 && array[i - 1] >= array[i])
+    i--;
+  if (i <= 0)
+    return -1;
+
+  // Find successor to pivot
+  let j = array.length - 1;
+  while (array[j] <= array[i - 1])
+    j--;
+  let temp = array[i - 1];
+  array[i - 1] = array[j];
+  array[j] = temp;
+
+  // Reverse suffix
+  j = array.length - 1;
+  while (i < j) {
+    temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+    i++;
+    j--;
+  }
+  return array;
+}
+
+function nextBigger(n) {
+  const arr = n.toString().split('').map(item => parseInt(item));
+  const permutations = nextPermutation(arr);
+  return permutations === -1 ? -1 : parseInt(permutations.join(''));
+}
+
+// console.log(nextBigger(12), 21);
+// console.log(nextBigger(513), 531);
+// console.log(nextBigger(2017), 2071);
+// console.log(nextBigger(414), 441);
+// console.log(nextBigger(144), 414);
+// console.log(nextBigger(1234567890), 1234567908);
