@@ -197,7 +197,7 @@ function formatWords(words) {
 // console.log(formatWords([]));
 
 function nextPermutation(array) {
-  https://www.nayuki.io/page/next-lexicographical-permutation-algorithm
+  //https://www.nayuki.io/page/next-lexicographical-permutation-algorithm
   // Find non-increasing suffix
   let i = array.length - 1;
   while (i > 0 && array[i - 1] >= array[i])
@@ -237,3 +237,32 @@ function nextBigger(n) {
 // console.log(nextBigger(414), 441);
 // console.log(nextBigger(144), 414);
 // console.log(nextBigger(1234567890), 1234567908);
+
+function permutations(string) {
+  if (!string || typeof string !== "string") {
+    return "Please enter a string";
+  } else if (string.length < 2) {
+    return Array.from(string);
+  }
+
+  let permutationSet = new Set();
+
+  for (let i = 0; i < string.length; i++) {
+    let char = string[i];
+
+    if (string.indexOf(char) != i)
+      continue;
+
+    let remainingChars = string.slice(0, i) + string.slice(i + 1, string.length);
+
+
+    for (let permutation of permutations(remainingChars)) {
+      permutationSet.add(char + permutation);
+    }
+  }
+  return Array.from(permutationSet);
+}
+
+console.log(permutations('a'), ['a']);
+console.log(permutations('ab').sort(), ['ab', 'ba'].sort());
+console.log(permutations('aabb').sort(), ['aabb', 'abab', 'abba', 'baab', 'baba', 'bbaa'].sort());
