@@ -1,5 +1,5 @@
 /*
-* Задачи*
+* Задачи *
 *
 *
 */
@@ -196,6 +196,9 @@ function formatWords(words) {
 // console.log(formatWords(['']));
 // console.log(formatWords([]));
 
+/*
+* https://www.codewars.com/kata/55983863da40caa2c900004e
+*/
 function nextPermutation(array) {
   //https://www.nayuki.io/page/next-lexicographical-permutation-algorithm
   // Find non-increasing suffix
@@ -238,6 +241,9 @@ function nextBigger(n) {
 // console.log(nextBigger(144), 414);
 // console.log(nextBigger(1234567890), 1234567908);
 
+/*
+* https://www.codewars.com/kata/5254ca2719453dcc0b00027d 
+*/
 function permutations(string) {
   if (!string || typeof string !== "string") {
     return "Please enter a string";
@@ -263,6 +269,7 @@ function permutations(string) {
   return Array.from(permutationSet);
 }
 
-console.log(permutations('a'), ['a']);
-console.log(permutations('ab').sort(), ['ab', 'ba'].sort());
-console.log(permutations('aabb').sort(), ['aabb', 'abab', 'abba', 'baab', 'baba', 'bbaa'].sort());
+// console.log(permutations('a'), ['a']);
+// console.log(permutations('ab').sort(), ['ab', 'ba'].sort());
+// console.log(permutations('aabb').sort(), ['aabb', 'abab', 'abba', 'baab', 'baba', 'bbaa'].sort());
+
