@@ -329,3 +329,24 @@ var moveZeros = function (arr) {
   }
   return zerosless;
 }
+
+/* 
+* 
+Your order, please
+* https://www.codewars.com/kata/55c45be3b2079eccff00010f/
+*/
+
+function order(words) {
+  const res = [];
+  const splitted = words.split(' ');
+  for (let i = 0; i < splitted.length; i++) {
+    for (let word of splitted) {
+      if (word.includes((i + 1).toString()) && !res.includes(word)) {
+        console.log(i + 1, word)
+        res.splice(i, 0, word);
+      }
+    }
+  }
+
+  return res.join(' ');
+}
