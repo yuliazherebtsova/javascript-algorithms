@@ -350,3 +350,42 @@ function order(words) {
 
   return res.join(' ');
 }
+
+
+/*
+* Remove Zeros
+* https://www.codewars.com/kata/52aae14aa7fd03d57400058f
+*/
+
+function removeZeros(arr) {
+  const zeros = [];
+  let j = 0;
+  let k = 0;
+  const zerosless = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === '0' || arr[i] === 0) {
+      zeros[j] = arr[i];
+      j += 1;
+      continue;
+    }
+    zerosless[k] = arr[i];
+    k += 1;
+  }
+  for (let i = 0; i < zeros.length; i++) {
+    zerosless[zerosless.length] = zeros[i];
+  }
+  return zerosless;
+}
+
+// console.log(removeZeros([1, null, '5', '0', '2', 0, 8, 6, null, false]), [1, null, "5", "2", 8, 6, null, false, "0", 0]);
+
+/*
+* One Line Task: Remove Zeros
+* https://www.codewars.com/kata/58fecb82f3dff0a347000018
+*/
+
+// removeZeros=a=>Array.from(a.join('').replace(/0/g,' ').trim().replace(' ',0),Number); 83!
+
+removeZeros=a=>a.filter((v,i)=>v||a.slice(i,a.length).some(v=>v))
+
+console.log(removeZeros([0, 0, 0, 0, 0, 2, 4, 3, 4, 6, 9, 1, 4, 0, 0, 0, 7, 7, 4, 3, 8, 7, 4, 5, 0, 0]), [2, 4, 3, 4, 6, 9, 1, 9, 9, 4, 0, 7, 7, 4, 3, 8, 7, 4, 5]);
