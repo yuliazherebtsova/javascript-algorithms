@@ -384,8 +384,44 @@ function removeZeros(arr) {
 * https://www.codewars.com/kata/58fecb82f3dff0a347000018
 */
 
-// removeZeros=a=>Array.from(a.join('').replace(/0/g,' ').trim().replace(' ',0),Number); 83!
+removeZeros = a => Array.from(a.join('').replace(/0/g, ' ').trim().replace(' ', 0), Number); // 83!
 
-removeZeros=a=>a.filter((v,i)=>v||a.slice(i,a.length).some(v=>v))
+//console.log(removeZeros([0, 0, 0, 0, 0, 2, 4, 3, 4, 6, 9, 1, 4, 0, 0, 0, 7, 7, 4, 3, 8, 7, 4, 5, 0, 0]), [2, 4, 3, 4, 6, 9, 1, 9, 9, 4, 0, 7, 7, 4, 3, 8, 7, 4, 5]);
 
-console.log(removeZeros([0, 0, 0, 0, 0, 2, 4, 3, 4, 6, 9, 1, 4, 0, 0, 0, 7, 7, 4, 3, 8, 7, 4, 5, 0, 0]), [2, 4, 3, 4, 6, 9, 1, 9, 9, 4, 0, 7, 7, 4, 3, 8, 7, 4, 5]);
+// re_once = /([a-z])([A-Z])/
+// re_glob = /([a-z])([A-Z])/g
+
+// st = "aAbBcC"
+
+// console.log("match once=" + st.match(re_once) + "  match glob=" + st.match(re_glob))
+// console.log("exec once=" + re_once.exec(st) + "   exec glob=" + re_glob.exec(st))
+// console.log("exec once=" + re_once.exec(st) + "   exec glob=" + re_glob.exec(st))
+// console.log("exec once=" + re_once.exec(st) + "   exec glob=" + re_glob.exec(st))
+
+checkRange = (a, x, y, c = 0) => a.map(v => c += v < x == v > y) | c
+
+//console.log(checkRange([2, 5, 6, 7, 1, 3, 4, 11, 56, 49], 1, 7), 7)
+
+function flatten(arr) {
+  if (!Array.isArray(arr)) return 0;
+  const stack = [...arr];
+  let res = '';
+  while (stack.length) {
+    const next = stack.pop();
+    if (Array.isArray(next)) {
+      res += '1';
+      stack.push(...next);
+    } else {
+      res += '0';
+    }
+  }
+  return res;
+}
+
+Array.prototype.sameStructureAs = function (other) {
+  return flatten(this) === flatten(other);
+};
+
+console.log([[2, 2], 2].sameStructureAs([1, [1, 1]]));
+console.log(flatten(1));
+
