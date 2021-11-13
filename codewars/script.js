@@ -1,13 +1,15 @@
 /*
-* Задачи *
-*
-*
-*/
+ * Задачи *
+ *
+ *
+ */
 
 function duplicateCount(text) {
   const lowerText = text.toLowerCase();
-  const letters = lowerText.split('');
-  const duplicates = letters.filter(item => (lowerText.match(new RegExp(item, 'g')) || []).length > 1);
+  const letters = lowerText.split("");
+  const duplicates = letters.filter(
+    (item) => (lowerText.match(new RegExp(item, "g")) || []).length > 1
+  );
   return new Set(duplicates).size;
 }
 
@@ -20,7 +22,7 @@ function duplicateCount(text) {
 
 String.prototype.isUpperCase = function () {
   return String(this) === this.toUpperCase();
-}
+};
 
 // console.log(''.isUpperCase() !== undefined, 'Must define the prototype isUpperCase');
 // console.log('c'.isUpperCase(), false, 'c is not upper case');
@@ -43,22 +45,40 @@ function solution(number) {
   let res = 0;
   if (number < 0) return 0;
   for (let i = 1; i < number; i++) {
-    if (i % 15 == 0) { res += i; continue; }
-    if (i % 5 == 0) { res += i; continue; }
-    if (i % 3 == 0) { res += i; continue; }
+    if (i % 15 == 0) {
+      res += i;
+      continue;
+    }
+    if (i % 5 == 0) {
+      res += i;
+      continue;
+    }
+    if (i % 3 == 0) {
+      res += i;
+      continue;
+    }
   }
   return res;
 }
 
 function findUniq(arr) {
-  const sorted = arr.map(item => [...new Set(item.toLowerCase().split('').sort().join('').trim())].join('')).sort();
-  const found = sorted.map((item, index, arr) => arr[0] === arr[1] ? arr[arr.length - 1] : arr[0])[0];
-  const filtered = arr.map(item => {
-    const str = [...new Set(item.toLowerCase().split('').sort().join('').trim())].join('');
-    if (str === found)
-      return item;
-    else return '';
-  }).filter(item => item);
+  const sorted = arr
+    .map((item) =>
+      [...new Set(item.toLowerCase().split("").sort().join("").trim())].join("")
+    )
+    .sort();
+  const found = sorted.map((item, index, arr) =>
+    arr[0] === arr[1] ? arr[arr.length - 1] : arr[0]
+  )[0];
+  const filtered = arr
+    .map((item) => {
+      const str = [
+        ...new Set(item.toLowerCase().split("").sort().join("").trim()),
+      ].join("");
+      if (str === found) return item;
+      else return "";
+    })
+    .filter((item) => item);
   return filtered[0];
 }
 
@@ -70,11 +90,11 @@ function findUniq(arr) {
 
 function sumIntervals(intervals) {
   const res = new Set();
-  intervals.forEach(arr => {
+  intervals.forEach((arr) => {
     for (let i = arr[0]; i < arr[arr.length - 1]; i++) {
       res.add(i);
     }
-  })
+  });
 
   return res.size;
 }
@@ -96,7 +116,6 @@ function sumIntervals(intervals) {
 // console.log(sumStrings('712569312664357328695151392', '8100824045303269669937'));
 // console.log(sumStrings('', '5'));
 
-
 function multiply(a, b) {
   return (BigInt(a) * BigInt(b)).toString();
 }
@@ -114,51 +133,46 @@ function multiply(a, b) {
 // console.log(multiply("9007199254740991", "9007199254740991"), "81129638414606663681390495662081");
 
 function divideStrings(a, b) {
-  return [Math.floor(BigInt(a) / BigInt(a)).toString(), (BigInt(a) % BigInt(a)).toString()];
+  return [
+    Math.floor(BigInt(a) / BigInt(a)).toString(),
+    (BigInt(a) % BigInt(a)).toString(),
+  ];
 }
 
 function formatDuration(seconds) {
-  if (seconds === 0) return 'now';
+  if (seconds === 0) return "now";
   let years = Math.floor(seconds / (3600 * 24 * 365));
-  let days = Math.floor(seconds % (3600 * 24 * 365) / (3600 * 24));
-  let hours = Math.floor(seconds % (3600 * 24) / 3600);
-  let min = Math.floor(seconds % 3600 / 60);
+  let days = Math.floor((seconds % (3600 * 24 * 365)) / (3600 * 24));
+  let hours = Math.floor((seconds % (3600 * 24)) / 3600);
+  let min = Math.floor((seconds % 3600) / 60);
   let sec = Math.floor(seconds % 60);
   let ans = [];
 
-  if (years > 1)
-    ans.push(years + ' years');
+  if (years > 1) ans.push(years + " years");
   else {
-    if (years === 1)
-      ans.push('1 year');
+    if (years === 1) ans.push("1 year");
   }
-  if (days > 1)
-    ans.push(days + ' days');
+  if (days > 1) ans.push(days + " days");
   else {
-    if (days === 1)
-      ans.push('1 day');
+    if (days === 1) ans.push("1 day");
   }
-  if (hours > 1)
-    ans.push(hours + ' hours');
+  if (hours > 1) ans.push(hours + " hours");
   else {
-    if (hours === 1)
-      ans.push('1 hour');
+    if (hours === 1) ans.push("1 hour");
   }
-  if (min > 1)
-    ans.push(min + ' minutes');
+  if (min > 1) ans.push(min + " minutes");
   else {
-    if (min === 1)
-      ans.push('1 minute');
+    if (min === 1) ans.push("1 minute");
   }
-  if (sec > 1)
-    ans.push(sec + ' seconds');
+  if (sec > 1) ans.push(sec + " seconds");
   else {
-    if (sec === 1)
-      ans.push('1 second');
+    if (sec === 1) ans.push("1 second");
   }
 
   if (ans.length > 1)
-    return `${ans.slice(0, ans.length - 1).join(', ')} and ${ans[ans.length - 1]}`;
+    return `${ans.slice(0, ans.length - 1).join(", ")} and ${
+      ans[ans.length - 1]
+    }`;
   else return ans[0];
 }
 
@@ -169,25 +183,27 @@ function formatDuration(seconds) {
 // console.log(formatDuration(3662), "| 1 hour, 1 minute and 2 seconds");
 
 function solution(input, markers) {
-  const lines = input.split('\n');
-  const words = lines.map(item => item.split(new RegExp(markers.map(item => `\\${item}`).join('|'), 'g')));
-  return words.map(item => item[0].trim()).join('\n');
-};
+  const lines = input.split("\n");
+  const words = lines.map((item) =>
+    item.split(new RegExp(markers.map((item) => `\\${item}`).join("|"), "g"))
+  );
+  return words.map((item) => item[0].trim()).join("\n");
+}
 
 // console.log(solution("apples, plums % and bananas\npears\noranges !applesauce", ["%", "!"], "apples, plums\npears\noranges"));
 // console.log(solution("Q @b\nu\ne -e f g", ["@", "-"], "Q\nu\ne"));
 // console.log(solution("a\nc\nd $e f g", ["$"], "Q\nu\ne"));
 
 function formatWords(words) {
-  if (!words || words.length === 1 && words[0] === '' || words.length === 0)
-    return '';
-  const res = words.filter(item => item);
+  if (!words || (words.length === 1 && words[0] === "") || words.length === 0)
+    return "";
+  const res = words.filter((item) => item);
   if (res.length > 1)
-    return `${res.slice(0, res.length - 1).join(', ')} and ${res[res.length - 1]}`;
-  else
-    return res[0];
+    return `${res.slice(0, res.length - 1).join(", ")} and ${
+      res[res.length - 1]
+    }`;
+  else return res[0];
 }
-
 
 // console.log(formatWords(['one']));
 // console.log(formatWords(['one', '', 'three']));
@@ -197,21 +213,18 @@ function formatWords(words) {
 // console.log(formatWords([]));
 
 /*
-* https://www.codewars.com/kata/55983863da40caa2c900004e
-*/
+ * https://www.codewars.com/kata/55983863da40caa2c900004e
+ */
 function nextPermutation(array) {
   //https://www.nayuki.io/page/next-lexicographical-permutation-algorithm
   // Find non-increasing suffix
   let i = array.length - 1;
-  while (i > 0 && array[i - 1] >= array[i])
-    i--;
-  if (i <= 0)
-    return -1;
+  while (i > 0 && array[i - 1] >= array[i]) i--;
+  if (i <= 0) return -1;
 
   // Find successor to pivot
   let j = array.length - 1;
-  while (array[j] <= array[i - 1])
-    j--;
+  while (array[j] <= array[i - 1]) j--;
   let temp = array[i - 1];
   array[i - 1] = array[j];
   array[j] = temp;
@@ -229,9 +242,12 @@ function nextPermutation(array) {
 }
 
 function nextBigger(n) {
-  const arr = n.toString().split('').map(item => parseInt(item));
+  const arr = n
+    .toString()
+    .split("")
+    .map((item) => parseInt(item));
   const permutations = nextPermutation(arr);
-  return permutations === -1 ? -1 : parseInt(permutations.join(''));
+  return permutations === -1 ? -1 : parseInt(permutations.join(""));
 }
 
 // console.log(nextBigger(12), 21);
@@ -242,8 +258,8 @@ function nextBigger(n) {
 // console.log(nextBigger(1234567890), 1234567908);
 
 /*
-* https://www.codewars.com/kata/5254ca2719453dcc0b00027d 
-*/
+ * https://www.codewars.com/kata/5254ca2719453dcc0b00027d
+ */
 function permutations(string) {
   if (!string || typeof string !== "string") {
     return "Please enter a string";
@@ -256,11 +272,10 @@ function permutations(string) {
   for (let i = 0; i < string.length; i++) {
     let char = string[i];
 
-    if (string.indexOf(char) != i)
-      continue;
+    if (string.indexOf(char) != i) continue;
 
-    let remainingChars = string.slice(0, i) + string.slice(i + 1, string.length);
-
+    let remainingChars =
+      string.slice(0, i) + string.slice(i + 1, string.length);
 
     for (let permutation of permutations(remainingChars)) {
       permutationSet.add(char + permutation);
@@ -274,20 +289,22 @@ function permutations(string) {
 // console.log(permutations('aabb').sort(), ['aabb', 'abab', 'abba', 'baab', 'baba', 'bbaa'].sort());
 
 /*
-* Most frequently used words in a text
-* https://www.codewars.com/kata/51e056fe544cf36c410000fb
-*/
+ * Most frequently used words in a text
+ * https://www.codewars.com/kata/51e056fe544cf36c410000fb
+ */
 
 function topThreeWords(text) {
-  const separators = [' ', '\\.', ',', ';', ':', '-', '\\!', '\\?', '//',];
-  const dict = {}
-  const words = text.toLowerCase().replace(/\s['"]+\s/g, '').split(new RegExp(separators.join('|'), 'g')).filter(item => item);
-  const res = words.forEach(item => {
-    if (!dict[item])
-      dict[item] = 1;
-    else
-      dict[item] += 1;
-  })
+  const separators = [" ", "\\.", ",", ";", ":", "-", "\\!", "\\?", "//"];
+  const dict = {};
+  const words = text
+    .toLowerCase()
+    .replace(/\s['"]+\s/g, "")
+    .split(new RegExp(separators.join("|"), "g"))
+    .filter((item) => item);
+  const res = words.forEach((item) => {
+    if (!dict[item]) dict[item] = 1;
+    else dict[item] += 1;
+  });
 
   const sortable = [];
   for (let word in dict) {
@@ -295,7 +312,7 @@ function topThreeWords(text) {
   }
 
   sortable.sort((a, b) => b[1] - a[1]);
-  const mostFreq = sortable.slice(0, 3).map(item => item[0]);
+  const mostFreq = sortable.slice(0, 3).map((item) => item[0]);
 
   return mostFreq;
 }
@@ -315,20 +332,20 @@ function topThreeWords(text) {
 // on Sundays, made away with three-quarters of his income.`), ['a', 'of', 'on'])
 
 /*
-* Moving Zeros To The End
-* https://www.codewars.com/kata/52597aa56021e91c93000cb0
-*/
+ * Moving Zeros To The End
+ * https://www.codewars.com/kata/52597aa56021e91c93000cb0
+ */
 
 var moveZeros = function (arr) {
-  const zeros = arr.filter(item => item === 0).length;
-  console.log(zeros)
-  const zerosless = arr.filter(item => item !== 0);
-  console.log(zerosless)
+  const zeros = arr.filter((item) => item === 0).length;
+  console.log(zeros);
+  const zerosless = arr.filter((item) => item !== 0);
+  console.log(zerosless);
   for (let i = 0; i < zeros; i++) {
     zerosless.push(0);
   }
   return zerosless;
-}
+};
 
 /* 
 * 
@@ -338,24 +355,23 @@ Your order, please
 
 function order(words) {
   const res = [];
-  const splitted = words.split(' ');
+  const splitted = words.split(" ");
   for (let i = 0; i < splitted.length; i++) {
     for (let word of splitted) {
       if (word.includes((i + 1).toString()) && !res.includes(word)) {
-        console.log(i + 1, word)
+        console.log(i + 1, word);
         res.splice(i, 0, word);
       }
     }
   }
 
-  return res.join(' ');
+  return res.join(" ");
 }
 
-
 /*
-* Remove Zeros
-* https://www.codewars.com/kata/52aae14aa7fd03d57400058f
-*/
+ * Remove Zeros
+ * https://www.codewars.com/kata/52aae14aa7fd03d57400058f
+ */
 
 function removeZeros(arr) {
   const zeros = [];
@@ -363,7 +379,7 @@ function removeZeros(arr) {
   let k = 0;
   const zerosless = [];
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === '0' || arr[i] === 0) {
+    if (arr[i] === "0" || arr[i] === 0) {
       zeros[j] = arr[i];
       j += 1;
       continue;
@@ -380,11 +396,12 @@ function removeZeros(arr) {
 // console.log(removeZeros([1, null, '5', '0', '2', 0, 8, 6, null, false]), [1, null, "5", "2", 8, 6, null, false, "0", 0]);
 
 /*
-* One Line Task: Remove Zeros
-* https://www.codewars.com/kata/58fecb82f3dff0a347000018
-*/
+ * One Line Task: Remove Zeros
+ * https://www.codewars.com/kata/58fecb82f3dff0a347000018
+ */
 
-removeZeros = a => Array.from(a.join('').replace(/0/g, ' ').trim().replace(' ', 0), Number); // 83!
+removeZeros = (a) =>
+  Array.from(a.join("").replace(/0/g, " ").trim().replace(" ", 0), Number); // 83!
 
 //console.log(removeZeros([0, 0, 0, 0, 0, 2, 4, 3, 4, 6, 9, 1, 4, 0, 0, 0, 7, 7, 4, 3, 8, 7, 4, 5, 0, 0]), [2, 4, 3, 4, 6, 9, 1, 9, 9, 4, 0, 7, 7, 4, 3, 8, 7, 4, 5]);
 
@@ -398,21 +415,21 @@ removeZeros = a => Array.from(a.join('').replace(/0/g, ' ').trim().replace(' ', 
 // console.log("exec once=" + re_once.exec(st) + "   exec glob=" + re_glob.exec(st))
 // console.log("exec once=" + re_once.exec(st) + "   exec glob=" + re_glob.exec(st))
 
-checkRange = (a, x, y, c = 0) => a.map(v => c += v < x == v > y) | c
+checkRange = (a, x, y, c = 0) => a.map((v) => (c += v < x == v > y)) | c;
 
 //console.log(checkRange([2, 5, 6, 7, 1, 3, 4, 11, 56, 49], 1, 7), 7)
 
 function flatten(arr) {
   if (!Array.isArray(arr)) return 0;
   const stack = [...arr];
-  let res = '';
+  let res = "";
   while (stack.length) {
     const next = stack.pop();
     if (Array.isArray(next)) {
-      res += '1';
+      res += "1";
       stack.push(...next);
     } else {
-      res += '0';
+      res += "0";
     }
   }
   return res;
@@ -424,4 +441,3 @@ Array.prototype.sameStructureAs = function (other) {
 
 console.log([[2, 2], 2].sameStructureAs([1, [1, 1]]));
 console.log(flatten(1));
-
