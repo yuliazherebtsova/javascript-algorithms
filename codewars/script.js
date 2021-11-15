@@ -439,5 +439,60 @@ Array.prototype.sameStructureAs = function (other) {
   return flatten(this) === flatten(other);
 };
 
-console.log([[2, 2], 2].sameStructureAs([1, [1, 1]]));
-console.log(flatten(1));
+// console.log([[2, 2], 2].sameStructureAs([1, [1, 1]]));
+// console.log(flatten(1));
+
+/**
+ * * Range Extraction
+ * * https://www.codewars.com/kata/51ba717bb08c1cd60f00002f
+ */
+
+function solution(list) {
+  let res = [];
+  res.push(list[0]);
+  let last = list[0];
+  for (let i = 1; i < list.length; i++) {
+    if (Math.abs(list[i - 1] - list[i]) > 1) {
+      res.push(list[i - 1] + "," + list[i]);
+    }
+    last = list[i];
+  }
+  res.push(last);
+  const res2 = res
+    .join("-")
+    .split(",")
+    .map((str) => {
+      if (str.indexOf("--") < 0) {
+        if (Math.abs(eval(str)) === 1) return str.split("-").toString();
+        else {
+          if (Math.abs(eval(str)) === 0) return str.split("-")[0].toString();
+          else return str;
+        }
+      } else {
+        if (Math.abs(eval(str.split("--").join("+"))) === 1)
+          return str.split("--").join(",-");
+        else {
+          if (Math.abs(eval(str.split("--").join("+")) === 0))
+            return str.split("--")[0];
+          else return str;
+        }
+      }
+    })
+    .toString();
+  return res2;
+}
+
+console.log(
+  solution([
+    -6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20,
+  ])
+);
+// returns "-6,-3-1,3-5,7-11,14,15,17-20"
+
+console.log(
+  solution([
+    -88, -86, -84, -82, -80, -79, -76, -73, -70, -67, -65, -62, -61, -58, -55,
+    -53, -52, -50, -47, -46, -44, -43, -41, -39, -36,
+  ])
+);
+// returns '-88,-86,-84,-82,-80--79,-76,-73,-70,-67,-65,-62--61,-58,-55,-53--52,-50,-47--46,-44--43,-41,-39,-36'
