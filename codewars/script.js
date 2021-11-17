@@ -482,17 +482,46 @@ function solution(list) {
   return res2;
 }
 
-console.log(
-  solution([
-    -6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20,
-  ])
-);
-// returns "-6,-3-1,3-5,7-11,14,15,17-20"
+// console.log(
+//   solution([
+//     -6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20,
+//   ])
+// );
+// // returns "-6,-3-1,3-5,7-11,14,15,17-20"
 
-console.log(
-  solution([
-    -88, -86, -84, -82, -80, -79, -76, -73, -70, -67, -65, -62, -61, -58, -55,
-    -53, -52, -50, -47, -46, -44, -43, -41, -39, -36,
-  ])
-);
+// console.log(
+//   solution([
+//     -88, -86, -84, -82, -80, -79, -76, -73, -70, -67, -65, -62, -61, -58, -55,
+//     -53, -52, -50, -47, -46, -44, -43, -41, -39, -36,
+//   ])
+// );
 // returns '-88,-86,-84,-82,-80--79,-76,-73,-70,-67,-65,-62--61,-58,-55,-53--52,-50,-47--46,-44--43,-41,-39,-36'
+
+/**
+ * * Twice Linear 
+ * * https://www.codewars.com/kata/5672682212c8ecf83e000050/solutions/javascript
+ * * Hamming's numbers generator adapted
+ */
+
+function dblLinear(n) {
+  let h = Array.from({ length: n }, () => 1);
+  let x2 = 3;
+  let x3 = 4;
+  let i = 0;
+  let j = 0;
+
+  for (p = 1; p <= n; p++) {
+    h[p] = Math.min(x2, x3);
+    if (x2 === h[p]) {
+      i += 1;
+      x2 = 2 * h[i] + 1;
+    }
+    if (x3 === h[p]) {
+      j += 1;
+      x3 = 3 * h[j] + 1;
+    }
+  }
+  return h[h.length - 1];
+}
+
+console.log(dblLinear(10));
